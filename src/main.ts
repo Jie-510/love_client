@@ -11,5 +11,11 @@ const app = createApp(App)
 import SvgIcon from '@/components/SvgIcon.vue';
 app.component('SvgIcon', SvgIcon)
 
+// 路由
+import router from '@/router/index';
+app.use(router)
+
+// 引入Vant组件样式
+import 'vant/lib/index.css';
 
 app.mount('#app')

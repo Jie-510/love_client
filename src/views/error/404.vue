@@ -1,7 +1,6 @@
 <template>
     <div>
-        layout
-        <router-view></router-view>
+        <h1>404 not fount</h1>
     </div>
 </template>
 

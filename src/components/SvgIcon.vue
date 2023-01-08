@@ -9,8 +9,8 @@
 import { computed } from 'vue';
 interface Props {
     name: string,
-    color: string,
-    size: string
+    color?: string,
+    size?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,8 +20,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const iconSize = computed(() => 'icon-' + props.size)
-console.log(iconSize);
-
 </script>
 
 <style scoped lang="scss">
@@ -45,6 +43,11 @@ console.log(iconSize);
     &-large {
         width: 2em;
         height: 2em;
+    }
+
+    &-big {
+        width: 4em;
+        height: 4em;
     }
 }
 </style>

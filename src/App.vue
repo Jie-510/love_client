@@ -1,6 +1,6 @@
 <template>
-  <div class="app">123
-    <svg-icon name="account" color="#dc3545" size="middle"></svg-icon>
+  <div class="app">
+    <router-view></router-view>
   </div>
 </template>
 
