@@ -2,25 +2,20 @@
     <div class="register3">
         <van-radio-group v-model="checked">
             <van-cell-group inset>
-                <template v-for="(v, i) in list" :key="v.title">
-                    <van-cell :title="v.title" clickable @click="v.isChecked = true" v-if="!v.isSelf">
-                        <template #right-icon>
-                            <van-radio :name="v.title" />
-                        </template>
-                    </van-cell>
-                    <van-cell clickable @click="v.isChecked = true" v-if="v.isSelf">
-                        <template #right-icon>
-                            <van-radio :name="v.title" />
-                        </template>
-                        <van-field v-model="v.content" placeholder="以上都不对，我自己写" />
-                    </van-cell>
-                </template>
+                <van-cell :title="v.title" clickable @click="checked = v.title" v-for="(v, i) in list" :key="i">
+                    <template #right-icon>
+                        <van-radio :name="v.title" />
+                    </template>
+                </van-cell>
+                <van-cell clickable @click="checked = isSlef">
+                    <template #right-icon>
+                        <van-radio :name="isSlef" />
+                    </template>
+                    <van-field v-model="isSlef" placeholder="以上都不对，我自己输入" />
+                </van-cell>
             </van-cell-group>
         </van-radio-group>
-
-        <van-button round block type="primary" native-type="submit" @click="submit">
-            确定
-        </van-button>
+        <van-button type="primary" block @click="handleSubmit">确定</van-button>
     </div>
 </template>
 
@@ -31,27 +26,34 @@ import { useRoute, useRouter } from 'vue-router';
 import { PhoneInt } from '~/login';
 const route = useRoute()
 const router = useRouter()
+let checked = ref<string>('1')
+let isSlef = ref<string>('')
 
-
-let checked = ref<string>('')
-
-let list = reactive<any>([
-    { title: '征婚', isChecked: false },
+let list = reactive([
+    { title: '征婚', isChecked: true },
     { title: '学习', isChecked: false },
     { title: '谈心', isChecked: false },
     { title: '解惑', isChecked: false },
-    { isChecked: false, isSelf: true, content: '' },
 ])
-let formData: any = reactive({
-    ...route.query,
-})
 
-const submit = async () => {
-    let item = list.filter((v: any) => v.isChecked)
-    formData.purpose = item.content ? item.content : item.title
-    console.log(formData);
+let formData: any = reactive(route.query)
+const handleSubmit = async (): Promise<void> => {
+    formData.purpose = checked.value
+    formData.mobile = Number(formData.mobile)
 
-    let res = registerReq(formData)
+    let newFormData = {
+        'mobile': formData.mobile,
+        'code': formData.code,
+        'nickname': formData.nickname,
+        'password': formData.password,
+        'purpose': formData.purpose
+    }
+
+    let res = await registerReq(formData)
+    // console.log(formData);
+
+    // console.log(res);
+
 }
 </script>
 

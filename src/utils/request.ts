@@ -14,7 +14,7 @@ enum msgType {
 
 const request: AxiosInstance = axios.create({
     baseURL: 'http://h5.itsource.cn:9999/',
-    timeout: 5000
+    timeout: 5000,
 })
 // 請求攔截器
 

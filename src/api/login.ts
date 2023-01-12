@@ -1,6 +1,7 @@
 import request from '@/utils/request';
 import { FormInt } from '~/login';
 import { PhoneRegisterInt, PhoneInt } from '~/login';
+import qs from 'qs';
 
 // 手机登录
 export const phoneLogin = (data: FormInt): Promise<any> => {
@@ -30,9 +31,14 @@ export const verifyReq = (data: PhoneRegisterInt): Promise<any> => {
 
 // 手机注册
 export const registerReq = (data: any): Promise<any> => {
+    // console.log(data);
+
     return request({
-        url: 'register',
+        url: `register?mobile=${data.mobile}&code=${data.code}&nickname=${data.nickname}&password=${data.password}&purpose=${data.purpose}`,
         method: 'post',
-        data
+        // headers: {
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        // },
+        // data
     })
 }

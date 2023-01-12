@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import '@/assets/styles/index.scss'
 
+
 // svg注册脚本
 import 'virtual:svg-icons-register'
 
@@ -17,5 +18,10 @@ app.use(router)
 
 // 引入Vant组件样式
 import 'vant/lib/index.css';
+
+// pinia
+import { createPinia } from 'pinia';
+const pinia = createPinia()
+app.use(pinia)
 
 app.mount('#app')
