@@ -32,6 +32,7 @@ const tabbarData = [
     .content {
         flex: 1;
         width: 100%;
+        overflow: hidden;
     }
 
     .tabbar-box {

@@ -21,9 +21,9 @@ const request: AxiosInstance = axios.create({
 
 request.interceptors.request.use((config: myRequest) => {
     // 携带token
-    const token = localStorage.getItem('token')
-    if (!config.headers.Authorization) {
-        config.headers.Authorization = `Bearer ${token}`
+    const token1: string = localStorage.getItem('token')
+    if (!config.headers.token) {
+        config.headers.token = `${token1}`
     }
     return config
 }, (err: any) => {

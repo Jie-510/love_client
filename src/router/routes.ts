@@ -84,6 +84,17 @@ const routes: Array<RouteRecordRaw> = [
         ]
     },
 
+    // 修改资料
+    {
+        path: '/edit-data',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component: () => import('@/views/mine/edit-data.vue')
+            }
+        ]
+    },
     // 404
     {
         path: '/404',

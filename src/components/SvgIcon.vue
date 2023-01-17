@@ -46,8 +46,8 @@ const iconSize = computed(() => 'icon-' + props.size)
     }
 
     &-big {
-        width: 4em;
-        height: 4em;
+        width: 3em;
+        height: 3em;
     }
 }
 </style>
